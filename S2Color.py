@@ -1,4 +1,5 @@
 import discord
+import os
 
 client = discord.Client()
 
@@ -111,4 +112,5 @@ async def on_message(message):
 		embed.add_field(name = 'S2M3-(역할)-(id)', value = "(id)의 유저에게서 (역할)을 제거합니다.")
 		await message.channel.send(embed=embed)
 
-client.run("NzE5MjE0NzA2Mzg4MzY5NDQ5.Xt0L2A.IZ2JfVSMOOaOKyxWWZPyB7UjJzs")
+access_token = os.environ["BOT_TOKEN"]
+client.run(access_token)
