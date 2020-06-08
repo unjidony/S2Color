@@ -38,7 +38,7 @@ async def on_message(message):
 				if delrole in message.author.roles:
 					await message.author.remove_roles(delrole)
 			await message.author.add_roles(role)
-			await message.chaneel.send("닉네임 색깔을 " + rolename[1] + "로 변경했습니다.")
+			await message.channel.send("닉네임 색깔을 " + rolename[1] + "로 변경했습니다.")
 		except:
 			await message.channel.send("색깔을 추가할 수 없었습니다. 형식에 맞지 않는 명령어를 입력하지는 않았는지 확인해 주세요.")
 			
