@@ -3,7 +3,6 @@ import os
 
 client = discord.Client()
 
-
 @client.event
 async def on_ready():
 	print(client.user.id)
@@ -26,13 +25,6 @@ async def on_message(message):
 			return "없는 것 같다."
 		else:
 			return funcres
-		
-	def deletecolor:
-		colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3"]
-			for i in colorlist:	
-				delrole = getrole(i)
-				if delrole in message.author.roles:
-					await message.author.remove_roles(delrole)
 
 	if message.content.startswith("S2색변경"):
 		try:
@@ -40,7 +32,11 @@ async def on_message(message):
 			rolename = message.content.split('-')
 			role = getrole(colordic[rolename[1]])
 		
-			deletecolor()
+			colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3"]
+			for i in colorlist:	
+				delrole = getrole(i)
+				if delrole in message.author.roles:
+					await message.author.remove_roles(delrole)
 			await message.author.add_roles(role)
 			await message.chaneel.send("닉네임 색깔을 " + rolename[1] + "로 변경했습니다.")
 		except:
@@ -48,7 +44,11 @@ async def on_message(message):
 			
 	if message.content.startswith("S2색제거"):
 		try:
-			deletecolor()
+			colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3"]
+			for i in colorlist:	
+				delrole = getrole(i)
+				if delrole in message.author.roles:
+					await message.author.remove_roles(delrole)
 			await message.channel.send("색깔이 성공적으로 제거되었습니다.")
 		except:
 			await message.channel.send("무슨 문제가 있는 것 같습니다......")
@@ -77,7 +77,7 @@ async def on_message(message):
 			changerole = getrole(cnlist[splitmsg[1]])
 			ctup = discord.Colour.from_rgb(int(splitmsg[2]),int(splitmsg[3]),int(splitmsg[4]))
 			await changerole.edit(colour = ctup)
-			await message.channel.send(splitmsg[1] + "의 색깔이 " + splitmsg[2] + "," + splitmsg[3] + "," + splitmsg[4] +" 로 변경되었습니다.)
+			await message.channel.send(splitmsg[1] + "의 색깔이 " + splitmsg[2] + "," + splitmsg[3] + "," + splitmsg[4] +" 로 변경되었습니다.")
 		except:
 			await message.channel.send("색깔을 변경할 수 없었습니다. 형식에 맞지 않는 명령어를 입력하지는 않았는지 확인해 주세요.")
 
