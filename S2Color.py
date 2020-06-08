@@ -26,6 +26,13 @@ async def on_message(message):
 			return "없는 것 같다."
 		else:
 			return funcres
+		
+	def deletecolor:
+		colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3"]
+			for i in colorlist:	
+				delrole = getrole(i)
+				if delrole in message.author.roles:
+					await message.author.remove_roles(delrole)
 
 	if message.content.startswith("S2색변경"):
 		try:
@@ -33,15 +40,19 @@ async def on_message(message):
 			rolename = message.content.split('-')
 			role = getrole(colordic[rolename[1]])
 		
-			colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3"]
-			for i in colorlist:	
-				delrole = getrole(i)
-				if delrole in message.author.roles:
-					await message.author.remove_roles(delrole)
+			deletecolor()
 			await message.author.add_roles(role)
+			await message.chaneel.send("닉네임 색깔을 " + rolename[1] + "로 변경했습니다.")
 		except:
 			await message.channel.send("색깔을 추가할 수 없었습니다. 형식에 맞지 않는 명령어를 입력하지는 않았는지 확인해 주세요.")
-
+			
+	if message.content.startswith("S2색제거"):
+		try:
+			deletecolor()
+			await message.channel.send("색깔이 성공적으로 제거되었습니다.")
+		except:
+			await message.channel.send("무슨 문제가 있는 것 같습니다......")
+			
 	
 	if message.content.startswith("S2색목록"):
 		embed = discord.Embed(title = '색깔 목록', description = '변경 가능한 닉네임 색깔 목록입니다.', colour = discord.Colour.dark_grey())
@@ -66,6 +77,7 @@ async def on_message(message):
 			changerole = getrole(cnlist[splitmsg[1]])
 			ctup = discord.Colour.from_rgb(int(splitmsg[2]),int(splitmsg[3]),int(splitmsg[4]))
 			await changerole.edit(colour = ctup)
+			await message.channel.send(splitmsg[1] + "의 색깔이 " + splitmsg[2] + "," + splitmsg[3] + "," + splitmsg[4] +" 로 변경되었습니다.)
 		except:
 			await message.channel.send("색깔을 변경할 수 없었습니다. 형식에 맞지 않는 명령어를 입력하지는 않았는지 확인해 주세요.")
 
@@ -103,6 +115,7 @@ async def on_message(message):
 		embed.add_field(name = 'S2색목록', value = "사용 가능한 닉네임 색깔 목록을 보여줍니다.")
 		embed.add_field(name = 'S2색깔닉설정 (색깔닉1~3) (r) (g) (b)', value = "색깔닉1, 색깔닉2, 색깔닉3의 색을 입력한 rgb 색으로 변경합니다.")
 		embed.add_field(name = 'S2색깔닉유저', value = "색깔닉1~3을 사용하고 있는 유저의 목록을 보여줍니다.")
+		embed.add_field(name = 'S2색제거', value = "가지고 있는 색깔 닉네임 역할을 제거합니다.")
 		await message.channel.send(embed=embed)
 
 	if message.content.startswith("S2Mhelp"):
