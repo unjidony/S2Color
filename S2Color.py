@@ -38,7 +38,7 @@ async def on_message(message):
 				if delrole in message.author.roles:
 					await message.author.remove_roles(delrole)
 			await message.author.add_roles(role)
-			await message.channel.send("닉네임 색깔을 " + rolename[1] + "로 변경했습니다.")
+			await message.channel.send("닉네임 색깔을 " + rolename[1] + "(으)로 변경했습니다.")
 		except:
 			await message.channel.send("색깔을 추가할 수 없었습니다. 형식에 맞지 않는 명령어를 입력하지는 않았는지 확인해 주세요.")
 			
@@ -77,7 +77,7 @@ async def on_message(message):
 			changerole = getrole(cnlist[splitmsg[1]])
 			ctup = discord.Colour.from_rgb(int(splitmsg[2]),int(splitmsg[3]),int(splitmsg[4]))
 			await changerole.edit(colour = ctup)
-			await message.channel.send(splitmsg[1] + "의 색깔이 " + splitmsg[2] + "," + splitmsg[3] + "," + splitmsg[4] +" 로 변경되었습니다.")
+			await message.channel.send(splitmsg[1] + "의 색깔이 " + splitmsg[2] + "," + splitmsg[3] + "," + splitmsg[4] +" (으)로 변경되었습니다.")
 		except:
 			await message.channel.send("색깔을 변경할 수 없었습니다. 형식에 맞지 않는 명령어를 입력하지는 않았는지 확인해 주세요.")
 
