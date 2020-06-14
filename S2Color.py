@@ -28,11 +28,11 @@ async def on_message(message):
 
 	if message.content.startswith("S2색변경"):
 		try:
-			colordic = {"빨강":"빨강", "핑크":"핑크", "주황":"주황", "노랑":"노랑", "연두":"연두", "초록":"초록", "청록":"청록", "시안":"시안", "하늘":"하늘", "파랑":"파랑", "보라":"보라", "연보라":"연보라", "자주":"자주", "색깔닉1":"색깔닉1", "색깔닉2":"색깔닉2", "색깔닉3":"색깔닉3", "양의 축복": "양의 축복"}
+			colordic = {"빨강":"빨강", "핑크":"핑크", "주황":"주황", "노랑":"노랑", "연두":"연두", "초록":"초록", "청록":"청록", "시안":"시안", "하늘":"하늘", "파랑":"파랑", "보라":"보라", "연보라":"연보라", "자주":"자주", "색깔닉1":"색깔닉1", "색깔닉2":"색깔닉2", "색깔닉3":"색깔닉3", "색깔닉4":"색깔닉4", "색깔닉4":"색깔닉4", "색깔닉4":"색깔닉4" "양의 축복": "양의 축복"}
 			rolename = message.content.split('-')
 			role = getrole(colordic[rolename[1]])
 		
-			colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3"]
+			colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3", "색깔닉4", "색깔닉5", "색깔닉6"]
 			for i in colorlist:	
 				delrole = getrole(i)
 				if delrole in message.author.roles:
@@ -44,7 +44,7 @@ async def on_message(message):
 			
 	if message.content.startswith("S2색제거"):
 		try:
-			colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3"]
+			colorlist = ["빨강", "핑크", "주황", "노랑", "연두", "초록", "청록", "시안", "하늘", "파랑", "보라", "연보라", "자주", "색깔닉1", "색깔닉2", "색깔닉3", "색깔닉4", "색깔닉5", "색깔닉6"]
 			for i in colorlist:	
 				delrole = getrole(i)
 				if delrole in message.author.roles:
@@ -61,19 +61,25 @@ async def on_message(message):
 		embed.add_field(name = '색깔닉1', value = getrole("색깔닉1").colour.to_rgb())
 		embed.add_field(name = '색깔닉2', value = getrole("색깔닉2").colour.to_rgb())
 		embed.add_field(name = '색깔닉3', value = getrole("색깔닉3").colour.to_rgb())
+		embed.add_field(name = '색깔닉4', value = getrole("색깔닉4").colour.to_rgb())
+		embed.add_field(name = '색깔닉5', value = getrole("색깔닉5").colour.to_rgb())
+		embed.add_field(name = '색깔닉6', value = getrole("색깔닉6").colour.to_rgb())
 		await message.channel.send(embed=embed)
 
 	if message.content.startswith("S2색깔닉유저"):
-		embed = discord.Embed(title = '색깔닉 유저 목록', description = "색깔닉 1~3을 사용 중인 유저의 목록입니다.", colour = discord.Colour.light_grey())
+		embed = discord.Embed(title = '색깔닉 유저 목록', description = "색깔닉 1~6을 사용 중인 유저의 목록입니다.", colour = discord.Colour.light_grey())
 		embed.add_field(name = '색깔닉1', value = getroleplayer("색깔닉1"))
 		embed.add_field(name = '색깔닉2', value = getroleplayer("색깔닉2"))
 		embed.add_field(name = '색깔닉3', value = getroleplayer("색깔닉3"))
+		embed.add_field(name = '색깔닉4', value = getroleplayer("색깔닉4"))
+		embed.add_field(name = '색깔닉5', value = getroleplayer("색깔닉5"))
+		embed.add_field(name = '색깔닉6', value = getroleplayer("색깔닉6"))
 		await message.channel.send(embed=embed)
 
 	if message.content.startswith("S2색깔닉설정"):
 		splitmsg = message.content.split(' ')
 		try:
-			cnlist = {"색깔닉1":"색깔닉1", "색깔닉2":"색깔닉2", "색깔닉3":"색깔닉3"}
+			cnlist = {"색깔닉1":"색깔닉1", "색깔닉2":"색깔닉2", "색깔닉3":"색깔닉3", "색깔닉4":"색깔닉4", "색깔닉5":"색깔닉5", "색깔닉6":"색깔닉6"}
 			changerole = getrole(cnlist[splitmsg[1]])
 			ctup = discord.Colour.from_rgb(int(splitmsg[2]),int(splitmsg[3]),int(splitmsg[4]))
 			await changerole.edit(colour = ctup)
@@ -113,8 +119,8 @@ async def on_message(message):
 		embed = discord.Embed(title = '명령어', description = "현재 사용 가능한 명령어 목록입니다.", colour = discord.Colour.lighter_grey())
 		embed.add_field(name = 'S2색변경-(색깔)', value = "닉네임 색깔을 (색깔)로 바꿉니다.")
 		embed.add_field(name = 'S2색목록', value = "사용 가능한 닉네임 색깔 목록을 보여줍니다.")
-		embed.add_field(name = 'S2색깔닉설정 (색깔닉1~3) (r) (g) (b)', value = "색깔닉1, 색깔닉2, 색깔닉3의 색을 입력한 rgb 색으로 변경합니다.")
-		embed.add_field(name = 'S2색깔닉유저', value = "색깔닉1~3을 사용하고 있는 유저의 목록을 보여줍니다.")
+		embed.add_field(name = 'S2색깔닉설정 (색깔닉1~6) (r) (g) (b)', value = "색깔닉의 색을 입력한 rgb 색으로 변경합니다.")
+		embed.add_field(name = 'S2색깔닉유저', value = "색깔닉1~6 사용하고 있는 유저의 목록을 보여줍니다.")
 		embed.add_field(name = 'S2색제거', value = "가지고 있는 색깔 닉네임 역할을 제거합니다.")
 		await message.channel.send(embed=embed)
 
