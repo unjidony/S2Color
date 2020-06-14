@@ -111,7 +111,7 @@ async def on_message(message):
 			role = getrole(rolename[1])
 			target = message.guild.get_member(int(rolename[2]))
 			if role in target.roles:
-					await target.remove_roles(role)
+				await target.remove_roles(role)
 		except:
 			await message.channel.send("실패.")
 
